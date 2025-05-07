@@ -1,0 +1,52 @@
+/* Background image and overall layout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('IMG_4968.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+  }
+  
+  /* Card-style container */
+  #output {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+  }
+  
+  /* Temperature number */
+  .temperature {
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Status message */
+  .status {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  /* Optional comment from API */
+  .comment {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #f0f0f0;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: #ff6b6b;
+    font-weight: bold;
+  }
+  

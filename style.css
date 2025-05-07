@@ -28,13 +28,13 @@ body {
   position: absolute;
   width: 2px;
   height: 15px;
-  background: rgba(255, 255, 255, 0.6); /* цвет капель */
+  background: rgba(186, 188, 225, 0.6); /* colour */
   animation: fall linear infinite;
 }
 
 @keyframes fall {
   to {
-    transform: translateY(100vh); /* капли движутся вниз */
+    transform: translateY(100vh); /* mooving */
   }
 }
   

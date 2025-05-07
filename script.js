@@ -1,47 +1,36 @@
-async function loadTemperature() {
-    const output = document.getElementById('output');
-  
-    try {
-      const response = await fetch(
-        'https://aareguru.existenz.ch/v2018/today?city=bern&app=my.aare.app&version=1.0'
-      );
-  
-      if (!response.ok) {
-        throw new Error('API Error: ' + response.status);
-      }
-  
-      const data = await response.json();
-      const temp = data?.aare;
-  
-      if (typeof temp !== 'number') {
-        throw new Error('Temperature data is missing or invalid');
-      }
-  
-      let message = '';
-      if (temp > 20) message = '🔥 Perfect for swimming!';
-      else if (temp > 15) message = '🌤 Cool but nice.';
-      else if (temp > 10) message = '🥶 Only for the brave!';
-      else message = '❄️ Ice cold water!';
-  
-      // Optional: include text_short if available
-      const comment = data?.text_short ? `<div class="comment">💬 ${data.text_short}</div>` : '';
-  
-      output.innerHTML = `
-        <div class="temperature">${temp.toFixed(1)}°C</div>
-        <div class="status">${message}</div>
-        ${comment}
-      `;
-      output.classList.remove('loading');
-  
-    } catch (error) {
-      output.innerHTML = '<div class="error">Failed to load: ' + error.message + '</div>';
-      console.error('Error fetching temperature:', error);
-    }
-  }
-  
-  // Load immediately
-  loadTemperature();
-  
-  // Repeat every 5 minutes (300000 ms)
-  setInterval(loadTemperature, 300000);
-  
+
+    const latitude = 46.948;
+    const longitude = 7.4474;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&precipitation_unit=mm&timezone=Europe%2FZurich`;
+
+    const weatherDescriptions = {
+      0: "☀️ Clear sky",
+      1: "🌤️ Mainly clear",
+      2: "⛅ Partly cloudy",
+      3: "☁️ Overcast",
+      45: "🌫️ Fog",
+      51: "🌦️ Light drizzle",
+      61: "🌧️ Rain",
+      71: "❄️ Snow",
+      80: "🌧️ Rain showers",
+      95: "⛈️ Thunderstorm"
+    };
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const weather = data.current_weather;
+        const description = weatherDescriptions[weather.weathercode] || "Unknown";
+
+        const output = `
+Time: ${weather.time}
+Temperature: ${weather.temperature}°C
+Precipitation: ${weather.precipitation ?? "N/A"} mm
+Weather: ${description}
+        `.trim();
+
+        document.getElementById('weather-output').textContent = output;
+      })
+      .catch(error => {
+        document.getElementById('weather-output').textContent = 'Error fetching weather data: ' + error;
+      });

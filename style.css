@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('IMG_4968.jpg');
+    background-image: url('bern.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -15,14 +15,23 @@ body {
   }
   
   /* Card-style container */
-  #output {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 40px 60px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
-  }
+  #weather-output {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 90px;
+      width: 250px;
+      color: #ffffff;
+      font-size: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px); /* applies a blur effect of 5 pixels to whatever is behind the element */
+      -webkit-backdrop-filter: blur(5px); /* just use it for old ver. browsers */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    /* margin-left: auto;  (pretend you don't see it: i just need it for another project)*/
+    
+    /*rgba(255, 0, 0, 1)   → fully opaque red  
+    rgba(255, 0, 0, 0.5) → semi-transparent red  
+    rgba(255, 0, 0, 0)   → fully transparent (invisible)*/
   
   /* Temperature number */
   .temperature {
@@ -48,5 +57,12 @@ body {
   .error {
     color: #ff6b6b;
     font-weight: bold;
+  }
+  
+  h1 img {
+    width: 44px;
+    height: 44px;
+    vertical-align: middle;
+    filter: invert(100%) saturate(500%) hue-rotate(200deg);
   }
   
